@@ -1119,6 +1119,7 @@ function initFeed() {
 
   /* ── 2. State ── */
   let active=null, scrollTimer=null, fillInt=null, jumping=false;
+  let ignoreCollapse = false;
 
   /* ── 3. Helpers ── */
   const allCards = () => Array.from(feedInner.querySelectorAll('.card'));
@@ -1139,6 +1140,10 @@ function initFeed() {
     if (active===card) return;
     if (active) collapseCard(active);
     active=card; card.classList.add('is-active');
+    
+    ignoreCollapse = true;
+    setTimeout(() => { ignoreCollapse = false; }, 650);
+
     window._setBgPalette && window._setBgPalette(card.dataset.type);
     gsap.fromTo(card.querySelectorAll('.xi > *'),
       {opacity:0,y:16},{opacity:1,y:0,duration:0.42,stagger:0.065,ease:'power2.out',delay:0.1});
@@ -1161,11 +1166,11 @@ function initFeed() {
   /* ── 4. Scroll: infinite loop + auto-expand ── */
   feed.addEventListener('scroll', () => {
     /* Colapsa o card atual ao rolar */
-    if (active) { collapseCard(active); active=null; }
+    if (!ignoreCollapse && active) { collapseCard(active); active=null; }
 
     /* ── Infinite scroll seamless ──
        Mede live (cards colapsados = altura estável) */
-    if (!jumping) {
+    if (!jumping && !active) {
       const singleH = feedInner.scrollHeight / 2;
       if (feed.scrollTop >= singleH) {
         jumping = true;
@@ -1178,7 +1183,7 @@ function initFeed() {
     clearTimeout(scrollTimer);
     scrollTimer = setTimeout(() => {
       const best = getCentered();
-      if (best) expandCard(best);
+      if (best && !active) expandCard(best);
     }, 480);
   }, { passive:true });
 
