@@ -644,22 +644,14 @@
     .ex-lock-cover span { font-size:0.75rem;font-weight:600;color:var(--terra-dk);opacity:0.8; }
 
     /* ── responsive ── */
-    @media (max-width: 767px) {
+    @media (min-width: 0px) {
       .feed-inner, .nav, .hd { max-width:480px; margin-left:auto; margin-right:auto; }
+      .nav, .hd { left:50%; right:auto; transform:translateX(-50%); width:100%; }
+      
+      #feed { scroll-snap-type: y proximity; }
+      .card { scroll-snap-align: center; }
     }
     @media (min-width: 768px) {
-      .feed-inner {
-        max-width: 1000px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-        padding: 24px;
-      }
-      .nav, .hd { max-width: 1000px; margin: 0 auto; left: 0; right: 0; }
-      .nav { border-radius: 20px 20px 0 0; }
-      .hd { border-radius: 0 0 20px 20px; }
-      
       .screen {
         top:50%;bottom:auto;height:88vh;
         max-width: 480px;
