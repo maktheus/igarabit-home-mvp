@@ -12,13 +12,13 @@
     /* ── TOKENS ── */
     :root {
       /* brand */
-      --cream:      #F5E9D5;
+      --cream:      #F8EED7;
       --cream2:     #EDD8B5;
-      --terra:      #BF533B;
-      --terra-dk:   #8B3A28;
-      --green:      #168C04;
-      --green-lt:   #27BF0F;
-      --gold:       #F2D479;
+      --terra:      #DC4A38;
+      --terra-dk:   #A8311A;
+      --green:      #789B55;
+      --green-lt:   #8DB663;
+      --gold:       #F2BA33;
       --white:      #F2F2F2;
       /* dark app */
       --bg:         #040c03;
@@ -40,16 +40,23 @@
     ════════════════════════════════════ */
     #splash {
       position: fixed; inset: 0; z-index: 300;
-      background: var(--cream);
+      background: var(--green);
+      background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='0,16 16,0 32,16' fill='none' stroke='%238DB663' stroke-width='2' opacity='0.6'/%3E%3Cpolyline points='0,32 16,16 32,32' fill='none' stroke='%238DB663' stroke-width='2' opacity='0.6'/%3E%3C/svg%3E");
       display: flex; flex-direction: column;
       overflow: hidden;
+      padding: 14px 14px 0 14px;
     }
 
-    /* geometric border frame */
-    .border-frame {
-      position: absolute; inset: 0; pointer-events: none; z-index: 1;
+    .splash-card {
+      position: relative;
+      background: var(--cream);
+      border-radius: 40px 40px 0 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
     }
-    .border-frame svg { width: 100%; height: 100%; }
 
     /* blobs */
     .blobs {
@@ -58,7 +65,7 @@
     }
     .blob {
       position: absolute; border-radius: 50%;
-      background: rgba(191,83,59,0.10);
+      background: rgba(220,74,56,0.08);
       filter: blur(0px);
     }
     .blob1 { width: 260px; height: 220px; top: 5%;  right: -60px; border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
@@ -70,31 +77,31 @@
     .sp-nav {
       position: relative; z-index: 10;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 22px 0;
+      padding: 24px 32px 0;
     }
     .sp-logo {
-      font-family: var(--fa); font-size: 1.7rem; letter-spacing: 1px;
+      font-family: var(--fa); font-size: 1.8rem; letter-spacing: 1px;
       color: var(--terra);
     }
     .sp-nav-links {
       display: none; /* hidden on mobile */
-      gap: 20px; font-size: 0.82rem; font-weight: 600; color: var(--terra-dk);
+      gap: 24px; font-size: 0.9rem; font-weight: 700; color: var(--terra-dk);
     }
     @media (min-width: 640px) { .sp-nav-links { display: flex; } }
     .sp-nav-cta {
       display: flex; gap: 8px;
     }
     .sp-btn-outline {
-      padding: 7px 14px; border-radius: 30px;
+      padding: 8px 18px; border-radius: 30px;
       border: 1.5px solid var(--terra); background: transparent;
-      color: var(--terra); font-size: 0.78rem; font-weight: 600;
+      color: var(--terra); font-size: 0.82rem; font-weight: 700;
       cursor: pointer; transition: background 0.2s, color 0.2s;
     }
     .sp-btn-outline:hover { background: var(--terra); color: #fff; }
     .sp-btn-fill {
-      padding: 7px 14px; border-radius: 30px;
+      padding: 8px 18px; border-radius: 30px;
       background: var(--terra); color: #fff;
-      border: none; font-size: 0.78rem; font-weight: 700;
+      border: none; font-size: 0.82rem; font-weight: 700;
       cursor: pointer;
     }
 
@@ -102,49 +109,65 @@
     .sp-hero {
       position: relative; z-index: 5;
       flex: 1;
+      margin: 24px;
+      border-radius: 30px;
+      background: var(--terra);
+      background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='0,16 16,0 32,16' fill='none' stroke='%23ffffff' stroke-width='1.5' opacity='0.15'/%3E%3Cpolyline points='0,32 16,16 32,32' fill='none' stroke='%23ffffff' stroke-width='1.5' opacity='0.15'/%3E%3C/svg%3E");
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      padding: 0 28px 20px;
+      padding: 40px 28px;
       text-align: center;
       gap: 0;
+      box-shadow: 0 12px 30px rgba(220,74,56,0.3);
+      overflow: hidden;
     }
+    /* Add dark red cutout shape behind hero */
+    .sp-hero::before {
+      content: '';
+      position: absolute; width: 60%; height: 80%;
+      background: var(--terra-dk);
+      border-radius: 40px;
+      z-index: -1;
+      left: 20%; top: 10%;
+      opacity: 0.8;
+    }
+    
     .sp-eyebrow {
       font-size: 0.68rem; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--terra);
-      background: rgba(191,83,59,0.1); border: 1px solid rgba(191,83,59,0.25);
+      text-transform: uppercase; color: #fff;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
       padding: 5px 14px; border-radius: 20px;
       margin-bottom: 18px; display: inline-block;
     }
     .sp-headline {
       font-family: var(--fa);
-      font-size: clamp(2.4rem, 10vw, 4.5rem);
-      color: var(--terra);
+      font-size: clamp(2.4rem, 8vw, 4.2rem);
+      color: #fff;
       line-height: 0.95; letter-spacing: 1px;
       margin-bottom: 16px;
     }
     .sp-sub {
-      font-size: clamp(0.82rem, 3vw, 0.95rem);
-      color: var(--terra-dk);
-      max-width: 340px;
+      font-size: clamp(0.85rem, 3vw, 1rem);
+      color: rgba(255,255,255,0.9);
+      max-width: 380px;
       line-height: 1.55;
       margin-bottom: 28px;
-      opacity: 0.8;
     }
     .sp-cta-group {
       display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
     }
     .btn-terra {
       padding: 14px 28px; border-radius: 40px;
-      background: var(--terra); color: #fff; border: none;
+      background: var(--terra-dk); color: #fff; border: none;
       font-weight: 700; font-size: 0.95rem; cursor: pointer;
-      box-shadow: 0 6px 20px rgba(191,83,59,0.35);
+      box-shadow: 0 6px 20px rgba(168,49,26,0.4);
       transition: transform 0.15s, box-shadow 0.15s;
     }
     .btn-terra:active { transform: scale(0.96); }
     .btn-ghost-terra {
       padding: 14px 28px; border-radius: 40px;
-      background: transparent; color: var(--terra);
-      border: 2px solid var(--terra);
+      background: transparent; color: #fff;
+      border: 2px solid #fff;
       font-weight: 700; font-size: 0.95rem; cursor: pointer;
       transition: transform 0.15s;
     }
@@ -162,7 +185,11 @@
       position: relative; z-index: 20;
       overflow: hidden;
       background: var(--gold);
-      padding: 8px 0;
+      padding: 12px 0;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-left: -14px; margin-right: -14px;
+    }
       white-space: nowrap;
       flex-shrink: 0;
     }
@@ -661,55 +688,38 @@
 <!-- ══════════ SPLASH ══════════ -->
 <div id="splash">
 
-  <!-- Organic blobs -->
-  <div class="blobs">
-    <div class="blob blob1"></div>
-    <div class="blob blob2"></div>
-    <div class="blob blob3"></div>
-    <div class="blob blob4"></div>
-  </div>
-
-  <!-- Geometric border SVG -->
-  <div class="border-frame">
-    <svg viewBox="0 0 375 812" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="chevron" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
-          <polyline points="0,8 8,0 16,8" fill="none" stroke="#168C04" stroke-width="1.2" opacity="0.55"/>
-          <polyline points="0,16 8,8 16,16" fill="none" stroke="#168C04" stroke-width="1.2" opacity="0.55"/>
-        </pattern>
-      </defs>
-      <!-- top band -->
-      <rect x="0" y="0"   width="375" height="14" fill="url(#chevron)"/>
-      <!-- bottom band (above marquee) -->
-      <rect x="0" y="778" width="375" height="14" fill="url(#chevron)"/>
-      <!-- left band -->
-      <rect x="0"   y="0" width="14" height="812" fill="url(#chevron)"/>
-      <!-- right band -->
-      <rect x="361" y="0" width="14" height="812" fill="url(#chevron)"/>
-    </svg>
-  </div>
-
-  <!-- Nav -->
-  <nav class="sp-nav">
-    <div class="sp-logo">IGARABIT</div>
-    <div class="sp-nav-links">
-      <span>Sobre</span><span>Artistas</span><span>Preços</span><span>Blog</span>
+  <div class="splash-card">
+    <!-- Organic blobs -->
+    <div class="blobs">
+      <div class="blob blob1"></div>
+      <div class="blob blob2"></div>
+      <div class="blob blob3"></div>
+      <div class="blob blob4"></div>
     </div>
-    <div class="sp-nav-cta">
-      <button class="sp-btn-outline" id="btn-login">Entrar</button>
-      <button class="sp-btn-fill"    id="btn-signup">Cadastre-se</button>
-    </div>
-  </nav>
 
-  <!-- Hero -->
-  <div class="sp-hero">
-    <span class="sp-eyebrow" id="sp-ey">Música · Arte · Cultura do Norte</span>
-    <h1 class="sp-headline" id="sp-h1">MOSTRE<br>SEU TRABALHO</h1>
-    <p class="sp-sub" id="sp-sub">Encontre artistas, descubra eventos e faça parte da maior comunidade cultural da Amazônia.</p>
-    <div class="sp-cta-group" id="sp-ctas">
-      <button class="btn-terra" id="btn-crie">Crie sua conta</button>
-      <button class="btn-ghost-terra" id="btn-explore">Explorar →</button>
+    <!-- Nav -->
+    <nav class="sp-nav">
+      <div class="sp-logo">IGARABIT</div>
+      <div class="sp-nav-links">
+        <span>Sobre</span><span>Artistas</span><span>Preços</span><span>Blog</span>
+      </div>
+      <div class="sp-nav-cta">
+        <button class="sp-btn-outline" id="btn-login">Faça login</button>
+        <button class="sp-btn-fill"    id="btn-signup">Cadastre-se</button>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="sp-hero">
+      <span class="sp-eyebrow" id="sp-ey">Música · Arte · Cultura do Norte</span>
+      <h1 class="sp-headline" id="sp-h1">MOSTRE<br>SEU TRABALHO</h1>
+      <p class="sp-sub" id="sp-sub">Encontre artistas, descubra eventos e faça parte da maior comunidade cultural da Amazônia.</p>
+      <div class="sp-cta-group" id="sp-ctas">
+        <button class="btn-terra" id="btn-crie">Crie sua conta</button>
+      </div>
     </div>
+
+    <!-- Marquee inside the card? Wait, in Image 1, marquee is yellow and spans the bottom edge. I'll leave the marquee at the bottom of the card. -->
   </div>
 
   <!-- Marquee -->
@@ -725,6 +735,7 @@
     </div>
   </div>
 </div>
+
 
 <!-- ══════════ AUTH ══════════ -->
 <div id="auth">
