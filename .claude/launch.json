@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Python Static Server",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "3000", "--directory", "E:/Nova pasta/igarabit"],
+      "port": 3000
+    },
+    {
+      "name": "Node Static Server (npx serve)",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "E:/Nova pasta/igarabit", "-l", "3001"],
+      "port": 3001
+    }
+  ]
+}
